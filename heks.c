@@ -22,26 +22,83 @@
 // 	to the project the exceptions are needed for.
 // Version: 19.01.24
 // EndLic
+
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include <math.h>
 
 //                      0  1  2  3   4  5  6  7   8  9  A  B   C  D  E  F  
 //                      1         2        3         4         5         6         7
 //             123456789012345678901234678901234567890123456789012345678901234567890123456789
 #define basis "........ .. .. .. ..  .. .. .. ..  .. .. .. ..  .. .. .. ..  ................"
+#undef debug
+
+void chat(char * message){
+#ifdef debug
+	printf("DEBUG: %s\n",message);
+#endif
+}
 
 int fails = 0;
 
-int hpos(i){ return (i*3)+(int)floor(i/4)+10; }
+int hpos(i){ return (i*3)+(int)floor(i/4)+9; }
+
+long int streamsize(FILE *stream){
+	long int old = ftell(stream);
+	fseek(stream, 0L, SEEK_END);
+	long int sz = ftell(stream);
+	fseek(stream, old, SEEK_SET);
+	return sz;
+}
+
+union convertchar{
+	char nc;
+	unsigned char uc;
+};
+
+unsigned char mygetc(FILE * bt){
+	union convertchar c;
+	c.nc = fgetc(bt);
+	return c.uc;
+}
+
 
 void showfile(char* file){
-	char ln[18];
-	char ch[2]; 
+	char ln[9];
+	char ch[4]; 
 	printf("Reading: %s\n",file);
 	FILE * bt = fopen(file,"rb");
 	if (bt==NULL) { printf("= Error opening file\n"); fails++; return; }
-	
+	int size = streamsize(bt);
+	printf("Size:     %d bytes\n",size);
+	char wline[80];
+	for (int pos=0;pos<size;pos++){
+		if (pos % 16 == 0) {
+			chat("New line!");
+			if (pos>0) printf("%s\n",wline);
+			chat(basis);
+			strcpy(wline, basis);
+			chat("Hexing position");
+			sprintf(ln,"%08X",pos);
+			chat("Copy!");
+			for (int i=0;i<8;i++) {
+				#ifdef debug
+				printf("DEBUG: Copy %d\n",i);
+				chat(wline);
+				#endif
+				wline[i]=ln[i];
+			}
+		}
+		unsigned char c = mygetc(bt);
+		//printf("?");
+		sprintf(ch,"%02X",c);
+		char mp = pos%16;
+		char cp = hpos(mp);
+		for (int i=0;i<2;i++) wline[cp+i]=ch[i];
+		if (c>31 && c<128) wline[mp+61]=c;
+	}
+	printf("%s\n",wline);
 	fclose(bt);
 }
 
