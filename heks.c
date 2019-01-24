@@ -96,7 +96,7 @@ void showfile(char* file){
 		char mp = pos%16;
 		char cp = hpos(mp);
 		for (int i=0;i<2;i++) wline[cp+i]=ch[i];
-		if (c>31 && c<128) wline[mp+61]=c;
+		if (c>31 && c<127) wline[mp+61]=c;
 	}
 	printf("%s\n",wline);
 	fclose(bt);
