@@ -4,7 +4,8 @@
 
 # No executables
 heks
-heks.exe
+*.exe
+*_linux
 
 # No objects
 *.o
