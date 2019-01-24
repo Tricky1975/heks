@@ -1,0 +1,13 @@
+# No crappy files for Mac
+.DS_Store
+._*
+
+# No executables
+heks
+heks.exe
+
+# No objects
+*.o
+
+# And no test stuff either
+ignore
