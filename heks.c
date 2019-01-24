@@ -42,7 +42,7 @@ void chat(char * message){
 
 int fails = 0;
 
-int hpos(i){ return (i*3)+(int)floor(i/4)+9; }
+int hpos(int i){ return (i*3)+(int)floor(i/4)+9; }
 
 long int streamsize(FILE *stream){
 	long int old = ftell(stream);
