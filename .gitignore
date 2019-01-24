@@ -11,3 +11,9 @@ heks.exe
 
 # And no test stuff either
 ignore
+
+
+# I don't want MKL
+MKL*
+*MKL*
+
