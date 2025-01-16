@@ -30,6 +30,10 @@ I do not recommend to use HEKSDOS.C to compile for any modern platform.
 
 
 
-# NOTE!
+## Installing on Unix based systems
 
-When I wrote this document this source has only been tried on Mac, so I will need to sort out how other platforms will react.
+Basically that's Linux, Mac, BSD, and so on. If you have gcc this couldn't be easier.
+~~~sh
+sudo gcc -o /usr/bin/heks heks.c
+~~~
+The system will ask for your password and voilà. 
