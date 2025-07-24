@@ -9,7 +9,7 @@ I had no serious plans for this project whatsoever, I just wanted to see if I co
 
 The word "Heks" means "Witch" in Dutch and is pronounced the same as "hex", well hence the name of this silly project :-P
 
-![](blob:https://imgur.com/0c2b41a3-80df-4ae6-82af-a52347c9c3e9)
+![]([https://i.imgur.com/ibiS6Sh.png)
 
 
 ([Witch picture from OpenClipArt.org](https://openclipart.org/detail/141931/witch)).
